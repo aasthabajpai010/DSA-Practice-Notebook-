@@ -1,1 +1,18 @@
-
+class Solution {
+    private:
+    int i=1;
+  public:
+    void printTillN(int n) {
+        if(n==0){
+            return ;
+        }
+          if(i>n){
+            return ;
+        }
+    
+        cout<<i<<" ";
+        i++;
+        printTillN(n);
+        
+    }
+};
