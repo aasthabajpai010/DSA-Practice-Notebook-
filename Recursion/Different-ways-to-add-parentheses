@@ -1,0 +1,45 @@
+/*Given a string expression of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. You may return the answer in any order.
+The test cases are generated such that the output values fit in a 32-bit integer and the number of different results does not exceed 104.*/
+class Solution {
+public:
+    vector<int> diffWaysToCompute(string expression) {
+        int n=expression.length();
+        vector<int> res;
+        
+        for(int i=0;i<n;i++){
+            char ch=expression[i];
+            if(ch=='+' || ch=='-' || ch=='*'){
+                string left=expression.substr(0,i);
+                string right=expression.substr(i+1);
+                vector<int> leftresults = diffWaysToCompute(left);
+            vector<int> rightresults = diffWaysToCompute(right);
+            for(int j=0;j<leftresults.size();j++){
+                int l=leftresults[j];
+
+                for(int k=0;k<rightresults.size();k++){
+                    int r=rightresults[k];
+                    if(ch=='+'){
+                        res.push_back(l+r);
+                    }
+                    else if(ch=='-'){
+                        res.push_back(l-r);
+                    }
+                    else{
+                        res.push_back(l*r);
+                    }
+
+
+
+                }
+            }
+            }
+        }
+            if(res.empty()){
+                res.push_back(stoi(expression));
+            }
+
+        
+        return res;
+        
+    }
+};
